@@ -1,14 +1,16 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var index = require('./routes/index');
-var config = require('./config');
-var busboy = require('connect-busboy');
-var bytes = require('bytes');
-var app = express();
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const index = require('./routes/index');
+const config = require('./config');
+const busboy = require('connect-busboy');
+const bytes = require('bytes');
+const app = express();
 const _ = require('lodash');
+const Logger = require('common/logger');
+
 function isOriginAllowed(origin, allowedOrigin) {
     if (_.isArray(allowedOrigin)) {
         for(let i = 0; i < allowedOrigin.length; i++) {
@@ -37,6 +39,7 @@ const ALLOW_ORIGIN = [ // 域名白名单
     'http://39.108.56.116:5000',
 ];
 
+app.use(Logger.connectLogger(logger, {level:Logger.levels.INFO}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(config.session_secret));

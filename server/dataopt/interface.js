@@ -1,8 +1,11 @@
-const Redis = require('redis');
 const Config = require('../config');
-let client = Redis.createClient(Config.redis);
+const Logger = require('../common/logger');
+const 
+
+
 
 
 exports = {
     
-}
+};
+Object.assign(module.exports, exports);
