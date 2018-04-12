@@ -1,19 +1,10 @@
-const router = require('koa-router')()
+const express = require('express');
+const router = express.Router();
+const Async = require('async');
+let canvas = require('../canvas-img/validate');
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
+router.get('/', function(req, res, next){//
+        res.send("hello");
+});
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
-
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
-
-module.exports = router
+module.exports = router;
