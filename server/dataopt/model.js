@@ -29,8 +29,8 @@ let collection = new mongoose.Schema({
     abstract: String, //简介
     createTime: { type: Date, default: Date.now }, //创建时间
     account: String, //创建者
-    share: Boolean, //是否分享
-    delete: Boolean, //是否已经删除
+    share: { type:Boolean, default: false}, //是否分享
+    delete: { type:Boolean, default: false}, //是否已经删除
 });
 let Collection = mongoose.model('Collection', collection);
 
