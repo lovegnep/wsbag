@@ -23,12 +23,29 @@ let usermodal = new mongoose.Schema({
 
 let UserModel = mongoose.model('UserModel', usermodal);
 
+//完全树状结构图
+let tree = new mongoose.Schema({
+    name:{type:String, default:'root'},
+    children:Array,//{_id,name,children}
+});
+let Tree = mongoose.model('Tree', tree);
+
+//单条分类
+let item = new mongoose.Schema({
+    name:String,
+    createTime:{type:Date, default:Date.now},
+    collections:Array,//每个收藏表的ID
+    parent:ObjectId,//父节点的ID
+    children:Array,//孩子节点
+});
+
 //收藏表
 let collection = new mongoose.Schema({
     url: String, //网址
     abstract: String, //简介
     createTime: { type: Date, default: Date.now }, //创建时间
     account: String, //创建者
+    type:ObjectId,//分类
     share: { type:Boolean, default: false}, //是否分享
     delete: { type:Boolean, default: false}, //是否已经删除
 });
