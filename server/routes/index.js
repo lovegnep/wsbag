@@ -76,8 +76,15 @@ router.post('/newcollection', function(req, res, next){
     let account = req.session.user.account;
     let uflag = Util.isUrlValid(url);
     if(!uflag.status){
-        res.send(uflag);
+        return res.send(uflag);
     }
+    Async.waterfall([
+        function(cb){
+
+        }
+    ], function(err, res){
+
+    });
     Interface.newCollection({url,abstract,account}, function(err, doc){
         if(err){
             Logger.error('post -- /newcollection: err:',err);

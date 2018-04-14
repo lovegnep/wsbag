@@ -26,7 +26,9 @@ let UserModel = mongoose.model('UserModel', usermodal);
 //完全树状结构图
 let tree = new mongoose.Schema({
     name:{type:String, default:'root'},
+    account:String,
     children:Array,//{_id,name,children}
+    collections:Array,
 });
 let Tree = mongoose.model('Tree', tree);
 
@@ -38,6 +40,7 @@ let item = new mongoose.Schema({
     parent:ObjectId,//父节点的ID
     children:Array,//孩子节点
 });
+let Item = mongoose.model('Item', item);
 
 //收藏表
 let collection = new mongoose.Schema({
@@ -75,6 +78,8 @@ exports = {
     UserModel: UserModel,
     Collection: Collection,
     Share: Share,
-    Comment: Comment
+    Comment: Comment,
+    Tree: Tree,
+    Item: Item,
 };
 Object.assign(module.exports, exports);
